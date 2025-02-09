@@ -1,0 +1,25 @@
+import java.io.Serializable;
+
+public class PerformanceReview implements Serializable {
+    private int employeeId;
+    private String reviewDate;
+    private String feedback;
+    private double rating; // 1 to 5
+
+    public PerformanceReview(int employeeId, String reviewDate, String feedback, double rating) {
+        this.employeeId = employeeId;
+        this.reviewDate = reviewDate;
+        this.feedback = feedback;
+        this.rating = rating;
+    }
+
+    public int getEmployeeId() { return employeeId; }
+    public String getReviewDate() { return reviewDate; }
+    public String getFeedback() { return feedback; }
+    public double getRating() { return rating; }
+
+    @Override
+    public String toString() {
+        return "ID: " + employeeId + " | Date: " + reviewDate + " | Rating: " + rating + " | " + feedback;
+    }
+}
