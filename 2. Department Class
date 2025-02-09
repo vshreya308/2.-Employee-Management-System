@@ -1,0 +1,28 @@
+import java.io.Serializable;
+import java.util.List;
+
+public class Department implements Serializable {
+    private String name;
+    private List<Employee> employees;
+
+    public Department(String name, List<Employee> employees) {
+        this.name = name;
+        this.employees = employees;
+    }
+
+    public String getName() { return name; }
+    public List<Employee> getEmployees() { return employees; }
+
+    public double getTotalSalary() {
+        return employees.stream().mapToDouble(Employee::getSalary).sum();
+    }
+
+    public double getAverageSalary() {
+        return employees.isEmpty() ? 0 : getTotalSalary() / employees.size();
+    }
+
+    @Override
+    public String toString() {
+        return name + " | Employees: " + employees.size() + " | Avg Salary: $" + getAverageSalary();
+    }
+}
