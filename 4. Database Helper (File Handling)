@@ -1,0 +1,20 @@
+import java.io.*;
+import java.util.*;
+
+public class Database {
+    public static <T> void saveData(List<T> data, String fileName) {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(fileName))) {
+            out.writeObject(data);
+        } catch (IOException e) {
+            System.out.println("Error saving data to " + fileName);
+        }
+    }
+
+    public static <T> List<T> loadData(String fileName) {
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(fileName))) {
+            return (List<T>) in.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            return new ArrayList<>();
+        }
+    }
+}
